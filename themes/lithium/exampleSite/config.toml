@@ -1,29 +1,27 @@
 baseurl = "https://example.org"
-languageCode = "en"
-title = "Jake Elliot Morgan"
-theme = "lithium"
+languageCode = "en-us"
+title = "Lithium Theme"
+theme = "hugo-lithium-theme"
 googleAnalytics = ""
 disqusShortname = ""
-
-# Syntax highlighting
-pygmentsCodeFences = true
-pygmentsOptions = "linenos=true"
-pygmentsStyle = "perldoc"
 
 [permalinks]
     post = "/:year/:month/:day/:title/"
     page = "/:title/"
 
-[menu]
-    [[menu.main]]
-        name = "About"
-        url = "/about-me/"
-    [[menu.main]]
-        name = "Posts"
-        url = "/"
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+[[menu.main]]
+    name = "GitHub"
+    url = ""
+[[menu.main]]
+    name = "Twitter"
+    url = ""
 
 [params]
     description = ""
+
     [params.logo]
     url = "logo.png"
     width = 50
@@ -32,3 +30,4 @@ pygmentsStyle = "perldoc"
 
     [params.icon]
     url = "favicon.ico"
+

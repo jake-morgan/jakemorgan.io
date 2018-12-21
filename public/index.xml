@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hello on Minimal</title>
-    <link>http://example.com/</link>
-    <description>Recent content in Hello on Minimal</description>
+    <title>Jake Elliot Morgan</title>
+    <link>https://example.org/</link>
+    <description>Recent content on Jake Elliot Morgan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 21 Dec 2018 14:24:13 +0000</lastBuildDate>
     
-	<atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Me</title>
+      <link>https://example.org/me/</link>
+      <pubDate>Fri, 21 Dec 2018 14:24:13 +0000</pubDate>
+      
+      <guid>https://example.org/me/</guid>
+      <description>Coming soon.</description>
+    </item>
+    
+    <item>
+      <title>Resolutions</title>
+      <link>https://example.org/2018/12/21/resolutions/</link>
+      <pubDate>Fri, 21 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/2018/12/21/resolutions/</guid>
+      <description>As I have gotten older the idea of a New Year resolution has been met with more and more cynicism, as people berate the idea of a having an arbitrary date in which to suddenly attempt to change something in your life. If you are living an unhealthy life why wait until the New Year to join the gym? If you are so concerned with the welfare of animals, then why wait until the New Year to take up veganism?</description>
+    </item>
     
   </channel>
 </rss>
