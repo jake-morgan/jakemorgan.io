@@ -21,14 +21,20 @@ pygmentsStyle = "perldoc"
     [[menu.main]]
         name = "Posts"
         url = "/"
+    [[menu.main]]
+        name = "Github"
+        url = "https://github.com/jake-morgan/"
 
 [params]
     description = ""
-    [params.logo]
-    url = "logo.png"
-    width = 50
-    height = 50
-    alt = "Logo"
 
+    # Top left logo details
+    [params.logo]
+        url = "logo.png"
+        width = 50
+        height = 50
+        alt = "Logo"
+
+    # Favicon details
     [params.icon]
-    url = "favicon.ico"
+        url = "pp.jpeg"
