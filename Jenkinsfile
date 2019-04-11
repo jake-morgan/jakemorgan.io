@@ -10,7 +10,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh 'hugo version'
+                sh 'cd site'
                 sh 'pwd'
                 sh 'ls'
             }
