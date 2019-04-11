@@ -10,7 +10,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                // pass
+                sh 'hugo version'
             }
         }
     }
