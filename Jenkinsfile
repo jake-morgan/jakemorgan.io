@@ -11,6 +11,8 @@ pipeline {
             }
             steps {
                 sh 'hugo version'
+                sh 'pwd'
+                sh 'ls'
             }
         }
     }
