@@ -20,10 +20,14 @@ pipeline {
     }
     post {
         success {
-            echo 'The build succeeded'
+            mail to: 'jakeelliotmorgan@gmail.com',
+                 subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Successfully built ${env.BUILD_URL}. The build passed"
         }
         failure {
-            echo 'The build failed'
+            mail to: 'jakeelliotmorgan@gmail.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}. The build failed"
         }
     }
 }
