@@ -1,33 +1,37 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.5.1'
+            image 'jakemorgan/hugo:latest'
         }
     }
     stages {
-        stage('build') {
+        stage('Build') {
             when {
                 branch 'master'
             }
             steps {
-                sh 'python --version'
-                sh '''
-                echo "Hello world"
-                ls -al
-                '''
+                sh ls
             }
+        }
+        stage('Test') {
+            when {
+                branch 'master'
+            }
+            echo 'Tests go here'
+        }
+        stage('Deploy') {
+            when {
+                branch 'master'
+            }
+            echo 'Deploy goes here'
         }
     }
     post {
         success {
-            mail to: 'jakeelliotmorgan@gmail.com',
-                 subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
-                 body: "Successfully built ${env.BUILD_URL}. The build passed"
+            echo "Build successful"
         }
         failure {
-            mail to: 'jakeelliotmorgan@gmail.com',
-                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                 body: "Something is wrong with ${env.BUILD_URL}. The build failed"
+            echo "Build successful"
         }
     }
 }
