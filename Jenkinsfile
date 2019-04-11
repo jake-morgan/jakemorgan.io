@@ -5,10 +5,10 @@ pipeline {
         }
     }
     stages {
-        when {
-            branch 'master'
-        }
         stage('build') {
+            when {
+                branch 'master'
+            }
             steps {
                 sh 'python --version'
                 sh '''
