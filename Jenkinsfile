@@ -17,13 +17,16 @@ pipeline {
             when {
                 branch 'master'
             }
-            echo 'Tests go here'
+            steps {
+                echo 'Tests go here'
+            }
         }
         stage('Deploy') {
             when {
                 branch 'master'
+            } steps {
+                echo 'Deploy goes here'
             }
-            echo 'Deploy goes here'
         }
     }
     post {
