@@ -10,7 +10,8 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh 'cd site; hugo'
+                sh 'cd site; pwd; hugo'
+                sh 'pwd; ls; cd site; pwd; ls'
             }
         }
     }
