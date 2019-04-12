@@ -14,5 +14,13 @@ pipeline {
                 sh 'pwd; ls; cd site; pwd; ls'
             }
         }
+        stage('Deploy') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'pwd; ls; cd site; pwd; ls'
+            }
+        }
     }
 }
