@@ -4,6 +4,7 @@ pipeline {
             image 'jakemorgan/hugo:latest'
         }
     }
+
     stages {
         stage('Build') {
             when {
@@ -18,7 +19,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh 'pwd; ls; cd site; pwd; ls'
+                sh 'pwd; ls; cd site; pwd; ls; cd public; ls'
                 // need to add the deployment instructions here
             }
         }
