@@ -10,8 +10,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh 'cd site; pwd; hugo'
-                sh 'pwd; ls; cd site; pwd; ls'
+                sh 'cd site; hugo'
             }
         }
         stage('Deploy') {
@@ -20,6 +19,7 @@ pipeline {
             }
             steps {
                 sh 'pwd; ls; cd site; pwd; ls'
+                // need to add the deployment instructions here
             }
         }
     }
