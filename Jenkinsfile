@@ -17,7 +17,7 @@ pipeline {
             steps {
                 // sh 'docker run --name hugo-container --rm'
                 sh 'hugo -s site'
-                sh 'pwd; ls'
+                sh 'pwd; ls; ls site'
             }
         }
         stage('Deploy') {
