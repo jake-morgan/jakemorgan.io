@@ -8,21 +8,21 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent {
+             agent {
                 docker {
                     image 'jakemorgan/hugo:latest'
-                    // args '--name hugo-container'
+                    args '-v "$(pwd)"/public:/public'
                 }
             }
             steps {
-                sh 'hugo -s site'
+                // sh 'docker run --name hugo-container --rm'
+                sh 'hugo -s site -d /public'
             }
         }
         stage('Deploy') {
             agent any
             steps {
-                sh 'docker ps'
-                sh 'pwd; ls; cd site; ls'
+                sh 'pwd; ls; cd public; ls'
                 sshagent (['jenkins-ssh']) {
                     // Remove all files in nginx folder and make sure the html file is present
                     sh 'ssh-add -L'
