@@ -18,6 +18,7 @@ pipeline {
                 // sh 'docker run --name hugo-container --rm'
                 sh 'hugo -s site'
                 sh 'pwd; ls; ls site'
+                sh 'cp -r site/public /home/public'
             }
         }
         stage('Deploy') {
