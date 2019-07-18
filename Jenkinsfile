@@ -1,4 +1,5 @@
 pipeline {
+    agent none
     // agent {
     //     docker {
     //         image 'jakemorgan/hugo:latest'
