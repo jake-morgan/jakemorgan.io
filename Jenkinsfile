@@ -1,18 +1,21 @@
 pipeline {
-    agent {
-        docker {
-            image 'jakemorgan/hugo:latest'
-        }
-    }
+    // agent {
+    //     docker {
+    //         image 'jakemorgan/hugo:latest'
+    //     }
+    // }
 
     stages {
         stage('Build') {
+            agent { docker 'jakemorgan/hugo:latest' }
             steps {
                 sh 'hugo -s site'
             }
         }
         stage('Deploy') {
+            agent { any }
             steps {
+                sh 'pwd; ls; cd site; ls'
                 sshagent (['jenkins-ssh']) {
                     // Remove all files in nginx folder and make sure the html file is present
                     sh 'ssh-add -L'
