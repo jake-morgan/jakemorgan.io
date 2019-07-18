@@ -35,7 +35,7 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
                 }
-                sh 'rm -rf /tmp/public'
+                sh 'sudo rm -rf /tmp/public'
             }
         }
     }
