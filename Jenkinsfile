@@ -7,20 +7,22 @@ pipeline {
 
     stages {
         stage('Build') {
-            when {
-                branch 'master'
-            }
             steps {
-                sh 'cd site; hugo'
+                sh 'hugo -s site'
             }
         }
         stage('Deploy') {
-            when {
-                branch 'master'
-            }
             steps {
-                sh 'pwd; ls; cd site; pwd; ls; cd public; ls'
-                // need to add the deployment instructions here
+                sshagent (['jenkins-ssh']) {
+                    // Remove all files in nginx folder and make sure the html file is present
+                    sh 'ssh jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
+                    sh 'ssh jenkins@jakemorgan.io mkdir -p /usr/share/nginx/html'
+                    // Copy files into home dir
+                    sh 'scp -r site/public jenkins@jakemorgan.io:~/'
+                    // Move files from home dir to nginx folder and delete old folder
+                    sh 'ssh jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
+                    sh 'ssh jenkins@jakemorgan.io rm -rf ~/public'
+                }
             }
         }
     }
