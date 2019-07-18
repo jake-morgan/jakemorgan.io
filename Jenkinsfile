@@ -10,6 +10,7 @@ pipeline {
                 }
             }
             steps {
+                sh 'hugo version'
                 sh 'hugo -s site'
             }
         }
