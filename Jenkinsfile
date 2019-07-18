@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                sh 'ls /tmp/public'
+                sh 'ls /tmp/public; whoami'
                 sshagent (['jenkins-ssh']) {
                     // Remove all files in nginx folder and make sure the html file is present
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
