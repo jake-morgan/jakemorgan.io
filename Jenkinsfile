@@ -11,14 +11,14 @@ pipeline {
              agent {
                 docker {
                     image 'jakemorgan/hugo:latest'
-                    args '-v "/tmp/public:${WORKSPACE}/public'
+                    args '-v "/tmp/public:/home/public'
                 }
             }
             steps {
                 // sh 'docker run --name hugo-container --rm'
-                sh 'hugo -s site -d ${WORKSPACE}/public'
+                sh 'hugo -s site -d /home/public'
                 sh 'pwd; ls; ls site'
-                sh 'ls ${WORKSPACE}/public'
+                sh 'ls /home/public'
             }
         }
         stage('Deploy') {
