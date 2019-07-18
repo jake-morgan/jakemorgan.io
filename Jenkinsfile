@@ -11,7 +11,7 @@ pipeline {
              agent {
                 docker {
                     image 'jakemorgan/hugo:latest'
-                    args '-v "/tmp/public:/home/public'
+                    args '-v "/tmp/public:/var/lib/jenkins/workspace/jakemorgan.io_master/site/public'
                 }
             }
             steps {
