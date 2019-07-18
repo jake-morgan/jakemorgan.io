@@ -14,7 +14,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent { any }
+            agent any
             steps {
                 sh 'pwd; ls; cd site; ls'
                 sshagent (['jenkins-ssh']) {
