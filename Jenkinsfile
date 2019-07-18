@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 // sh 'docker run --name hugo-container --rm'
-                sh 'hugo -s site -d /public'
+                sh 'sudo hugo -s site -d /public'
                 sh 'pwd; ls; ls site'
                 sh 'ls /; ls /public'
             }
