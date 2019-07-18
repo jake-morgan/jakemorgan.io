@@ -7,6 +7,7 @@ pipeline {
                 docker {
                     image 'jakemorgan/hugo:latest'
                     args '-v /tmp/public:/var/lib/jenkins/workspace/jakemorgan.io_master/site/public -u 0'
+                    alwaysPull true
                 }
             }
             steps {
