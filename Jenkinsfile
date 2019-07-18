@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                sh 'pwd; ls; cd public; ls'
+                sh 'pwd; ls; cd site; ls'
                 sshagent (['jenkins-ssh']) {
                     // Remove all files in nginx folder and make sure the html file is present
                     sh 'ssh-add -L'
