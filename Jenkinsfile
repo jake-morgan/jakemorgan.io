@@ -1,10 +1,5 @@
 pipeline {
     agent none
-    // agent {
-    //     docker {
-    //         image 'jakemorgan/hugo:latest'
-    //     }
-    // }
 
     stages {
         stage('Build') {
@@ -15,16 +10,12 @@ pipeline {
                 }
             }
             steps {
-                // sh 'docker run --name hugo-container --rm'
                 sh 'hugo -s site'
-                sh 'pwd; ls; ls site'
-                sh 'cp -r site/public /home/public'
             }
         }
         stage('Deploy') {
             agent any
             steps {
-                sh 'ls /tmp/public; whoami'
                 sshagent (['jenkins-ssh']) {
                     // Remove all files in nginx folder and make sure the html file is present
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
