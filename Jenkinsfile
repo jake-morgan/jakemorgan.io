@@ -15,6 +15,7 @@ pipeline {
             steps {
                 sshagent (['jenkins-ssh']) {
                     // Remove all files in nginx folder and make sure the html file is present
+                    sh 'ssh-add -L'
                     sh 'ssh jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
                     sh 'ssh jenkins@jakemorgan.io mkdir -p /usr/share/nginx/html'
                     // Copy files into home dir
