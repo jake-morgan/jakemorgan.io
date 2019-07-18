@@ -16,9 +16,9 @@ pipeline {
             }
             steps {
                 // sh 'docker run --name hugo-container --rm'
-                sh 'hugo -s site -d /home/public'
+                sh 'whoami'
+                sh 'hugo -s site'
                 sh 'pwd; ls; ls site'
-                sh 'ls /home/public'
             }
         }
         stage('Deploy') {
