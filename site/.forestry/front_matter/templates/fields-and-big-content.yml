@@ -16,5 +16,8 @@ fields:
     date_format: 
     time_format: 
     display_utc: false
+- name: toggle
+  type: boolean
+  label: Toggle
 pages:
 - site/content/post/test.md
