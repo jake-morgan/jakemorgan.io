@@ -4,7 +4,9 @@ title = "Field and content"
 toggle = true
 
 +++
-This is a test page
+This is a test page.
 
-    for i in range(50):
-    	print("i is " + i)
+```python
+for i in range(10):
+	print("i is " + i)
+```
