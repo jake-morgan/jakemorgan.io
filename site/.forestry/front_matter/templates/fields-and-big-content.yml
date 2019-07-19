@@ -7,9 +7,9 @@ fields:
   config:
     required: false
   label: Title
-- name: date_picker
+- name: date
   type: datetime
-  label: Date Picker
+  label: Date
   description: ''
   config:
     required: false
