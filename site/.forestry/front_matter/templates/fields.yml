@@ -14,5 +14,30 @@ fields:
   config:
     min: 
     max: 
+- name: date
+  type: datetime
+  label: Date
+  description: ''
+  config:
+    required: false
+    date_format: 
+    time_format: 
+    display_utc: false
+- name: picker
+  type: color
+  label: Picker
+  config:
+    required: false
+    color_format: Hex
+- name: toggle
+  type: boolean
+  label: Toggle
+- name: list
+  type: list
+  config:
+    use_select: false
+    min: 
+    max: 
+  label: List
 pages:
 - site/content/post/fields.md
