@@ -21,7 +21,7 @@ use_front_matter_path: false
 file_template: ":filename:"
 instant_preview: true
 build:
-  preview_command: hugo
+  preview_command: hugo -s site
   publish_command: hugo -d public
   preview_env:
   - HUGO_ENV=staging
