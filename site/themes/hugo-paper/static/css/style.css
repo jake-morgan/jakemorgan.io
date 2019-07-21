@@ -687,13 +687,13 @@ img {
 .indexHome {
   height: auto;
   text-align: center;
-  font-size: 150px;
+  font-size: calc(40px + 10vw);
   font-weight: 700;
 }
 
 .indexLinks {
   text-align: center;
-  font-size: 50px;
+  font-size: calc(16px + 3vw);
   font-weight: 300;
   opacity: 1;
 }
