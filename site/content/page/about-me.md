@@ -11,3 +11,5 @@ I'm a computer science graduate living in Cardiff after fledging the nest in Pem
 I'm passionate about improving the software delivery experience and engineering highly available platforms in the cloud whilst never compromising on quality. My other interests includes sports such as kayaking and bouldering, cooking, and playing board games.
 
 If you want to get in touch then you can contact me on [LinkedIn](https://www.linkedin.com/in/jakeelliotmorgan/ "linkedin.com/in/jakeelliotmorgan") or [Twitter](https://twitter.com/jakeemorgan "twitter.com/jakeemorgan").
+
+![](/uploads/web-3.jpg)
