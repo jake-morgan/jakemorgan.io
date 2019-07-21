@@ -39,5 +39,3 @@ fields:
     min: 
     max: 
   label: List
-pages:
-- site/content/post/fields.md
