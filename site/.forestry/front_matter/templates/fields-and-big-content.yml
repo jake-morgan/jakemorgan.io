@@ -19,5 +19,3 @@ fields:
 - name: toggle
   type: boolean
   label: Toggle
-pages:
-- site/content/post/test.md
