@@ -3,7 +3,7 @@
 {{ if not .IsHome }}
 <header class="page-header">
   <h1>
-  {{ if eq .Data.Singular "tag" }}{{ .Data.Term }}{{ else }}Posts{{ end }}
+    {{ if eq .Data.Singular "tag" }}{{ .Data.Term }}{{ else }}Posts{{ end }}
   </h1>
 </header>
 {{ end }}
@@ -12,15 +12,18 @@
 
 {{ if gt $paginator.TotalPages 0 }}
 {{ range $index, $page := $paginator.Pages }}
-<article class="{{ if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) }}first-entry{{ else }}post-entry{{ end }}">
+<article
+  class="{{ if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) }}first-entry{{ else }}post-entry{{ end }}">
   <header class="entry-header">
     <h2>{{ .Title }}</h2>
   </header>
   <section class="entry-content">
-   <p>{{ .Summary | plainify | htmlUnescape }}...</p>
+    <p>{{ .Summary | plainify | htmlUnescape }}...</p>
   </section>
   <footer class="entry-footer">
+    {{ if .Params.showthedate }}
     <time>{{ .Date.Format (.Site.Params.dateFormat | default "2006.1.2") }}</time>
+    {{ end }}
   </footer>
   <a class="entry-link" href="{{ .Permalink }}"></a>
 </article>

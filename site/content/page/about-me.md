@@ -1,6 +1,7 @@
 ---
 title: About Me
 date: ''
+showthedate: false
 enableemoji: true
 
 ---
