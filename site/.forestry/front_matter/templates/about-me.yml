@@ -8,3 +8,5 @@ fields:
 - name: enableemoji
   type: boolean
   label: Emoji Enabled
+pages:
+- site/content/page/about-me.md

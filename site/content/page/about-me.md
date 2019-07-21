@@ -1,6 +1,7 @@
 ---
 title: About Me
-date: 
+date: ''
+enableemoji: true
 
 ---
 Hi I'm Jake :wave: 
