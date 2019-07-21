@@ -4,6 +4,7 @@ title = "Jake Morgan"
 theme = "hugo-paper"
 googleAnalytics = ""
 disqusShortname = ""
+enableEmoji = true
 
 # Syntax highlighting
 pygmentsCodeFences = true
