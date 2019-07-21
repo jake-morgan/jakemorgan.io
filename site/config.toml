@@ -5,6 +5,7 @@ theme = "hugo-paper"
 googleAnalytics = ""
 disqusShortname = ""
 enableEmoji = true
+Paginate = 3
 
 # Syntax highlighting
 pygmentsCodeFences = true
@@ -20,8 +21,8 @@ pygmentsStyle = "perldoc"
         name = "About"
         url = "/about-me/"
     [[menu.main]]
-        name = "Posts"
-        url = "/"
+        name = "Blog"
+        url = "/posts/"
     [[menu.main]]
         name = "Github"
         url = "https://github.com/jake-morgan/"

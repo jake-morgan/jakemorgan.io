@@ -1,9 +1,9 @@
 ---
 title: About Me
-date: ''
+date: '2019-07-21'
 showthedate: false
 enableemoji: true
-
+type: 'page'
 ---
 Hi I'm Jake. :wave:
 

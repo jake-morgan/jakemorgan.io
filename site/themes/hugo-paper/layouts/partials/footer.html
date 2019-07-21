@@ -1,19 +1,23 @@
 </main>
 <footer class="footer">
-  <span>&copy; {{ now.Year }} <a href="{{ "" | absURL }}">{{ .Site.Title }}</a></span>
+  <span>&copy; {{ now.Year }} <a href="{{ "/" | absURL }}">{{ .Site.Title }}</a></span>
   <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span><a href="{{ "/about-me" | absURL }}">About</a></span>
   <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+  <span><a href="{{ "/blog" | absURL }}">Blog</a></span>
 </footer>
 <script src="{{ "js/instantclick.min.js" | absURL }}" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
+<script data-no-instant>
+  InstantClick.init();
+</script>
 <script src="{{ "js/highlight.min.js" | absURL }}" data-no-instant></script>
 <script data-no-instant>
   let body;
+
   function menuToggleListener() {
     body.classList.toggle('blur');
   }
+
   function setMenuToggleListener() {
     const menuToggle = document.querySelector('.menu-toggle');
     if (!menuToggle) return;
@@ -32,4 +36,5 @@
   });
 </script>
 </body>
+
 </html>

@@ -255,8 +255,8 @@ img {
 }
 
 .page-header h1 {
-  font-size: 32px;
-  font-weight: 400;
+  font-size: 80px;
+  font-weight: 700;
 }
 
 .pagination {
@@ -670,4 +670,18 @@ img {
 -------------------------------------------------- */
 #instantclick-bar {
   background: linear-gradient(120deg, #7492e6, #8f72c3, #9c66b3, #ba4d95, #ba4d95, #dc3c75);
+}
+
+/* Home
+-------------------------------------------------- */
+.index {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  font-size: 160px;
+  font-weight: 700;
 }
