@@ -1,6 +1,16 @@
 pipeline {
     agent none
 
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(
+            logRotator(
+                daysToKeepStr: '365',
+                artifactDaysToKeepStr: '365'
+            )
+        )
+    }
+
     stages {
         stage('Build') {
              agent {
