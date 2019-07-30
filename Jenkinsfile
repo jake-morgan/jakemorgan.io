@@ -57,4 +57,10 @@ pipeline {
             // }
         }
     }
+    post {
+        always {
+            echo 'Pipeline finished, cleaning up'
+            deleteDir()
+        }
+    }
 }
