@@ -32,7 +32,7 @@ pipeline {
                     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
                     cleanUpContainerOrShare: true,
                     containerName: '$web',
-                    filesPath: '/tmp/public/**',
+                    filesPath: '**',
                     storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
                     storageType: 'blobstorage'
                 )
