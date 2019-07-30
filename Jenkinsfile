@@ -21,7 +21,6 @@ pipeline {
                     alwaysPull true
                 }
             }
-            options { skipDefaultCheckout(false) }
             steps {
                 sh 'hugo version'
                 sh 'hugo -s site'
