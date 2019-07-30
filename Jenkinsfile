@@ -17,7 +17,7 @@ pipeline {
              agent {
                 docker {
                     image 'jakemorgan/hugo:latest'
-                    args '-v /var/lib/jenkins/workspace/jakemorgan.io_master/site/public:/var/lib/jenkins/workspace/jakemorgan.io_master/site/public -u 0'
+                    args '-v /var/lib/jenkins/workspace/jakemorgan.io_master/public:/var/lib/jenkins/workspace/jakemorgan.io_master/site/public -u 0'
                     alwaysPull true
                 }
             }
@@ -36,10 +36,9 @@ pipeline {
                     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
                     cleanUpContainerOrShare: true,
                     containerName: '$web',
-                    filesPath: 'site/public/**',
+                    filesPath: 'public/**',
                     storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
-                    storageType: 'blobstorage',
-                    virtualPath: '/'
+                    storageType: 'blobstorage'
                 )
             }
 
@@ -59,7 +58,7 @@ pipeline {
             post {
                 always {
                     echo 'Pipeline finished, cleaning up'
-                    sh 'sudo rm -rf site/public'
+                    sh 'sudo rm -rf public/'
                 }
             }
         }
