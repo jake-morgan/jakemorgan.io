@@ -16,7 +16,7 @@ pipeline {
              agent {
                 docker {
                     image 'jakemorgan/hugo:latest'
-                    args '-v /tmp/public:/var/lib/jenkins/workspace/jakemorgan.io_master/site/public -u 0'
+                    args '-v /site/public:/var/lib/jenkins/workspace/jakemorgan.io_master/site/public -u 0'
                     alwaysPull true
                 }
             }
@@ -28,6 +28,7 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
+                sh 'pwd'
                 azureUpload (
                     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
                     cleanUpContainerOrShare: true,
