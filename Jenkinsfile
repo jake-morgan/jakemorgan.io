@@ -37,6 +37,7 @@ pipeline {
                     cleanUpContainerOrShare: true,
                     containerName: '$web',
                     filesPath: 'public/**',
+                    pubAccessible: true,
                     storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
                     storageType: 'blobstorage'
                 )
