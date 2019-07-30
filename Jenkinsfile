@@ -9,6 +9,7 @@ pipeline {
                 artifactDaysToKeepStr: '365'
             )
         )
+        skipDefaultCheckout()
     }
 
     stages {
@@ -21,6 +22,7 @@ pipeline {
                 }
             }
             steps {
+                checkout scm
                 sh 'hugo version'
                 sh 'hugo -s site'
             }
