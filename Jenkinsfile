@@ -21,7 +21,7 @@ pipeline {
                     alwaysPull true
                 }
             }
-            options { skipDefaultCheckout(true) }
+            options { skipDefaultCheckout(false) }
             steps {
                 sh 'hugo version'
                 sh 'hugo -s site'
@@ -29,6 +29,7 @@ pipeline {
         }
         stage('Deploy') {
             agent any
+            options { skipDefaultCheckout(true) }
             steps {
                 sh 'pwd'
                 sh 'ls; ls site/; ls site/public/'
