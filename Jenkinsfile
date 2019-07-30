@@ -58,7 +58,7 @@ pipeline {
             post {
                 always {
                     echo 'Pipeline finished, cleaning up'
-                    sh 'rm -rf site/public'
+                    sh 'sudo rm -rf site/public'
                 }
             }
         }
