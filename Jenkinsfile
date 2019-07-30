@@ -28,18 +28,28 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                sshagent (['jenkins-ssh']) {
-                    // Remove all files in nginx folder and make sure the html file is present
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
-                    // Copy files into home dir
-                    sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/public jenkins@jakemorgan.io:~/'
-                    // Move files from home dir to nginx folder and delete old folder
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
-                }
-                sh 'sudo rm -rf /tmp/public'
+                azureUpload (
+                    cleanUpContainerOrShare: true,
+                    containerName: '$web',
+                    filesPath: '/tmp/public/*',
+                    storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
+                    storageType: 'blobstorage'
+                )
             }
+
+            // steps {
+            //     sshagent (['jenkins-ssh']) {
+            //         // Remove all files in nginx folder and make sure the html file is present
+            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
+            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
+            //         // Copy files into home dir
+            //         sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/public jenkins@jakemorgan.io:~/'
+            //         // Move files from home dir to nginx folder and delete old folder
+            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
+            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
+            //     }
+            //     sh 'sudo rm -rf /tmp/public'
+            // }
         }
     }
 }
