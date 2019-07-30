@@ -29,6 +29,7 @@ pipeline {
             agent any
             steps {
                 sh 'pwd'
+                sh 'ls; ls site/; ls site/public/'
                 azureUpload (
                     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
                     cleanUpContainerOrShare: true,
