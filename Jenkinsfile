@@ -9,7 +9,7 @@ pipeline {
                 artifactDaysToKeepStr: '365'
             )
         )
-        // skipDefaultCheckout(false)
+        skipDefaultCheckout(false)
     }
 
     stages {
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Deploy') {
             agent any
-            // options { skipDefaultCheckout(true) }
+            options { skipDefaultCheckout(true) }
             steps {
                 sh 'pwd'
                 sh 'ls; ls site/; ls site/public/'
