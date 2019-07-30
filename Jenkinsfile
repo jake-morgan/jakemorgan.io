@@ -33,6 +33,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls; ls site/; ls site/public/'
                 azureUpload (
+                    allowAnonymousAccess: true,
                     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
                     cleanUpContainerOrShare: true,
                     containerName: '$web',
