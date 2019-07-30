@@ -38,7 +38,8 @@ pipeline {
                     containerName: '$web',
                     filesPath: 'site/public/**',
                     storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
-                    storageType: 'blobstorage'
+                    storageType: 'blobstorage',
+                    virtualPath: ''
                 )
             }
 
