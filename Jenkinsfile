@@ -58,7 +58,7 @@ pipeline {
             post {
                 always {
                     echo 'Pipeline finished, cleaning up'
-                    deleteDir()
+                    sh 'rm -rf site/public'
                 }
             }
         }
