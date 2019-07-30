@@ -30,32 +30,18 @@ pipeline {
             agent any
             options { skipDefaultCheckout(true) }
             steps {
-                sh 'pwd'
-                sh 'ls; ls site/; ls site/public/'
-                azureUpload (
-                    allowAnonymousAccess: true,
-                    blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
-                    cleanUpContainerOrShare: true,
-                    containerName: '$web',
-                    filesPath: 'public/**',
-                    pubAccessible: true,
-                    storageType: 'blobstorage'
-                )
+                sshagent (['jenkins-ssh']) {
+                    // Remove all files in nginx folder and make sure the html file is present
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
+                    // Copy files into home dir
+                    sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r site/public jenkins@jakemorgan.io:~/'
+                    // Move files from home dir to nginx folder and delete old folder
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
+                }
+                sh 'sudo rm -rf /tmp/public'
             }
-
-            // steps {
-            //     sshagent (['jenkins-ssh']) {
-            //         // Remove all files in nginx folder and make sure the html file is present
-            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
-            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
-            //         // Copy files into home dir
-            //         sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tmp/public jenkins@jakemorgan.io:~/'
-            //         // Move files from home dir to nginx folder and delete old folder
-            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
-            //         sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
-            //     }
-            //     sh 'sudo rm -rf /tmp/public'
-            // }
             post {
                 always {
                     echo 'Pipeline finished, cleaning up'
