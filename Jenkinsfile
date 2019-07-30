@@ -32,14 +32,14 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls; ls site/; ls site/public/'
-                azureUpload (
-                    blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
-                    cleanUpContainerOrShare: true,
-                    containerName: '$web',
-                    filesPath: 'site/public/',
-                    storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
-                    storageType: 'blobstorage'
-                )
+                // azureUpload (
+                //     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
+                //     cleanUpContainerOrShare: true,
+                //     containerName: '$web',
+                //     filesPath: 'site/public/',
+                //     storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
+                //     storageType: 'blobstorage'
+                // )
             }
 
             // steps {
