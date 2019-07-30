@@ -36,7 +36,7 @@ pipeline {
                     blobProperties: [cacheControl: '', contentEncoding: '', contentLanguage: '', contentType: '', detectContentType: true],
                     cleanUpContainerOrShare: true,
                     containerName: '$web',
-                    filesPath: 'site/public/*',
+                    filesPath: 'site/public/**',
                     storageCredentialId: '54d11d50-731e-4ef2-a847-4c8a715edf36',
                     storageType: 'blobstorage'
                 )
@@ -55,13 +55,14 @@ pipeline {
             //     }
             //     sh 'sudo rm -rf /tmp/public'
             // }
+            post {
+                always {
+                    agent any
+                    echo 'Pipeline finished, cleaning up'
+                    deleteDir()
+                }
+            }
         }
     }
-    post {
-        always {
-            agent any
-            echo 'Pipeline finished, cleaning up'
-            deleteDir()
-        }
-    }
+
 }
