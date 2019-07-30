@@ -35,7 +35,7 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
                     // Copy files into home dir
-                    sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r site/public jenkins@jakemorgan.io:~/'
+                    sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ./site/public jenkins@jakemorgan.io:~/'
                     // Move files from home dir to nginx folder and delete old folder
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
