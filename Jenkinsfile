@@ -57,11 +57,11 @@ pipeline {
             // }
         }
     }
-    // post {
-    //     always {
-    //         agent any
-    //         echo 'Pipeline finished, cleaning up'
-    //         deleteDir()
-    //     }
-    // }
+    post {
+        always {
+            agent any
+            echo 'Pipeline finished, cleaning up'
+            deleteDir()
+        }
+    }
 }
