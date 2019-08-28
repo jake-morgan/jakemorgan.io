@@ -47,9 +47,9 @@ pipeline {
                 always {
                     echo 'Pipeline finished, cleaning up'
                     sh 'sudo rm -rf public/'
+                    sh 'sudp rm -rf site/public/'
                 }
             }
         }
     }
-
 }
