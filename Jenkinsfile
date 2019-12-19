@@ -12,18 +12,25 @@ pipeline {
         skipDefaultCheckout(false)
     }
 
+    environment {
+        IMAGE_NAME = 'jakemorgan/jakemorgan.io'
+    }
+
     stages {
         stage('Build') {
              agent {
                 docker {
                     image 'jakemorgan/hugo:latest'
-                    args '-v /disk1/jenkins_home/workspace/jakemorgan.io_master/public:/disk1/jenkins_home/workspace/jakemorgan.io_master/site/public -u 0'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock \
+                          -v /disk1/jenkins_home/workspace/jakemorgan.io_master/public:/disk1/jenkins_home/workspace/jakemorgan.io_master/site/public -u 0'
                     alwaysPull true
                 }
             }
             steps {
+                sh 'pwd; ls;'
                 sh 'hugo version'
                 sh 'hugo -s site'
+                // sh 'docker build --no-cache -t ${IMAGE_NAME} .'
             }
         }
         stage('Deploy') {
@@ -41,7 +48,6 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
                 }
-                sh 'sudo rm -rf /tmp/public'
             }
             post {
                 always {
