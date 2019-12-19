@@ -66,7 +66,14 @@ pipeline {
             options { skipDefaultCheckout(true) }
             steps {
                 sshagent (['jenkins-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io && docker-compose pull && docker-compose up"'
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io; sudo docker-compose pull && docker-compose up"'
+                }
+            }
+            post {
+                always {
+                    echo 'Pipeline finished, cleaning up'
+                    sh 'sudo rm -rf public/'
+                    sh 'sudo rm -rf site/public/'
                 }
             }
         }
