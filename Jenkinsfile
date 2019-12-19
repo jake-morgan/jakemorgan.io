@@ -14,6 +14,8 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'jakemorgan/jakemorgan.io'
+        DOCKER_USERNAME = credentials('docker-username')
+        DOCKER_PASSWORD = credentials('docker-password')
     }
 
     stages {
@@ -30,7 +32,9 @@ pipeline {
                 sh 'pwd; ls;'
                 sh 'hugo version'
                 sh 'hugo -s site'
-                // sh 'docker build --no-cache -t ${IMAGE_NAME} .'
+                sh 'docker build --no-cache -t ${IMAGE_NAME} .'
+                sh 'echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin'
+                sh 'docker push ${IMAGE_NAME}'
             }
         }
         stage('Deploy') {
