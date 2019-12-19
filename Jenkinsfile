@@ -37,27 +37,36 @@ pipeline {
                 sh 'docker push ${IMAGE_NAME}'
             }
         }
-        stage('Deploy') {
+        // stage('Deploy') {
+        //     agent any
+        //     options { skipDefaultCheckout(true) }
+        //     steps {
+        //         sshagent (['jenkins-ssh']) {
+        //             sh 'pwd; ls public/; ls site/; ls site/public'
+        //             // Remove all files in nginx folder and make sure the html file is present
+        //             sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
+        //             sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
+        //             // Copy files into home dir
+        //             sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r public jenkins@jakemorgan.io:~/'
+        //             // Move files from home dir to nginx folder and delete old folder
+        //             sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
+        //             sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
+        //         }
+        //     }
+        //     post {
+        //         always {
+        //             echo 'Pipeline finished, cleaning up'
+        //             sh 'sudo rm -rf public/'
+        //             sh 'sudo rm -rf site/public/'
+        //         }
+        //     }
+        // }
+        stage('Docker Deploy') {
             agent any
             options { skipDefaultCheckout(true) }
             steps {
                 sshagent (['jenkins-ssh']) {
-                    sh 'pwd; ls public/; ls site/; ls site/public'
-                    // Remove all files in nginx folder and make sure the html file is present
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo rm -rf /usr/share/nginx/html'
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io sudo mkdir -p /usr/share/nginx/html'
-                    // Copy files into home dir
-                    sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r public jenkins@jakemorgan.io:~/'
-                    // Move files from home dir to nginx folder and delete old folder
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "sudo mv ~/public/* /usr/share/nginx/html"'
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io rm -rf ~/public'
-                }
-            }
-            post {
-                always {
-                    echo 'Pipeline finished, cleaning up'
-                    sh 'sudo rm -rf public/'
-                    sh 'sudo rm -rf site/public/'
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/ && docker-compose pull && docker-compose up"'
                 }
             }
         }
