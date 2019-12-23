@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh 'hugo version'
                 sh 'hugo -s site'
-                sh 'docker build -t ${IMAGE_NAME} .'
+                sh 'docker build --no-cache -t ${IMAGE_NAME} .'
                 sh 'echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin'
                 sh 'docker push ${IMAGE_NAME}'
             }
