@@ -36,6 +36,13 @@ pipeline {
                 sh 'echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin'
                 sh 'docker push ${IMAGE_NAME}'
             }
+            post {
+                always {
+                    echo 'Pipeline finished, cleaning up'
+                    sh 'sudo rm -rf public/'
+                    sh 'sudo rm -rf site/public/'
+                }
+            }
         }
         // stage('Deploy') {
         //     agent any
@@ -68,13 +75,6 @@ pipeline {
                 sshagent (['jenkins-ssh']) {
                     sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io; sudo docker-compose pull && sudo docker-compose up"'
                 }
-            }
-        }
-        post {
-            always {
-                echo 'Pipeline finished, cleaning up'
-                sh 'sudo rm -rf public/'
-                sh 'sudo rm -rf site/public/'
             }
         }
     }
