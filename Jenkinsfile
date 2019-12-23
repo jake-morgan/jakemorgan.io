@@ -72,7 +72,7 @@ pipeline {
             options { skipDefaultCheckout(true) }
             steps {
                 sshagent (['jenkins-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io; sudo docker-compose pull && sudo docker-compose up -d'
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io; sudo docker-compose pull && sudo docker-compose up -d"
                 }
             }
         }
