@@ -32,7 +32,7 @@ pipeline {
                 sh 'pwd; ls;'
                 sh 'hugo version'
                 sh 'hugo -s site'
-                sh 'docker build --no-cache -t ${IMAGE_NAME} .'
+                sh 'docker build -t ${IMAGE_NAME} .'
                 sh 'echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin'
                 sh 'docker push ${IMAGE_NAME}'
             }
@@ -72,7 +72,7 @@ pipeline {
             options { skipDefaultCheckout(true) }
             steps {
                 sshagent (['jenkins-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io; sudo docker-compose pull && sudo docker-compose up"'
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@jakemorgan.io "cd /home/jake/jakemorgan.io; sudo docker-compose pull && sudo docker-compose up -d'
                 }
             }
         }
